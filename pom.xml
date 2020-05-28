@@ -26,7 +26,18 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
+				<cloudHubDeployment>
+				<username> sabdulla12345</username>
+				<environment>Sandbox</environment>
+				<workers>1</workers>
+				<workerType>Micro</workerType>
+				<applicationName>helloworld-api</applicationName>
+				<password>151293lM#</password>
+				<muleVersion>4.1.4</muleVersion>
+				
+				</cloudHubDeployment>
 				</configuration>
+				
 			</plugin>
 		</plugins>
 	</build>
