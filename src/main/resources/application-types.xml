@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="json-simple" format="json">
+      <types:shape format="weave" example="examples/payload.json"><![CDATA[%dw 2.0
+
+type json_simple = {|
+  Sales: Number {"typeId": "int"}, 
+  quantity: Number {"typeId": "int"}
+|} {"example": "{\\\"Sales\\\":1234,\\\"quantity\\\":150}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#0c56981b-0936-4768-806e-7c8a4f3c222c">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="json-simple"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

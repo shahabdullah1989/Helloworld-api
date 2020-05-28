@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="00863207-033e-4857-9978-ab01652645ce" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="dfe59321-a9f7-48a5-963c-a6343a659e8e" >
+		<http:listener-connection host="0.0.0.0" port="8086" />
+	</http:listener-config>
+	<flow name="helloworld-jenkins-apiFlow" doc:id="61b1b7b9-70e1-4650-945b-87c4849fcc27" >
+		<http:listener doc:name="Listener" doc:id="58f22ebf-58c0-4ae5-afd0-e874adab575b" config-ref="HTTP_Listener_config1" path="/shah/"/>
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="aa734d65-ca05-4835-9f32-e2d85920f5ba" />
+		<ee:transform doc:name="Transform Message" doc:id="0c56981b-0936-4768-806e-7c8a4f3c222c" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"ID" : "123",
+	"Name" : "Shah Abdullah",
+	"Revenue" : ((payload.Sales) * payload.quantity),
+	
+	
+	
+	
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="088109e6-7796-4335-b704-18c796c068cc" message="#[payload]"/>
+	</flow>
+</mule>
