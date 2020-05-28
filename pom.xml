@@ -29,6 +29,7 @@
 				<cloudHubDeployment>
 				<username> sabdulla12345</username>
 				<environment>Sandbox</environment>
+				<uri>shah</uri>
 				<workers>1</workers>
 				<workerType>Micro</workerType>
 				<applicationName>helloworld-api</applicationName>
